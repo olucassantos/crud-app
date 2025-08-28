@@ -255,3 +255,44 @@ As views serão criadas na pasta `resources/views/produtos`. Você pode criar as
     </form>
 @endsection
 ```
+
+## Criando o layout 
+
+O layout será o arquivo que conterá a estrutura básica do HTML e será utilizado por todas as views da aplicação. Vamos criar um arquivo chamado `app.blade.php` na pasta `resources/views/layouts`.
+
+Conteudo:
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CRUD de Produtos</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
+    <div class="container">
+        @yield('content')
+    </div>
+</body>
+</html>
+```
+
+## Rotas
+
+Para acessar as funcionalidades do CRUD, precisamos definir as rotas no arquivo `routes/web.php`. Vamos adicionar as seguintes rotas:
+
+```php
+use App\Http\Controllers\ProdutoController;
+
+Route::resource('produtos', ProdutoController::class);
+```
+
+## Executando a aplicação
+
+```bash
+php artisan serve
+```
+
+O comando acima irá iniciar o servidor embutido do Laravel, permitindo que você acesse a aplicação no navegador através do endereço `http://localhost:8000`.
